@@ -56,6 +56,9 @@ function findAndComparePassword(username, candidatePassword, callback) {
       if (err) {
         return callback(err);
       }
+      if(!user) {
+        return callback(null);
+      }     
       bcrypt.compare(candidatePassword, user.password, function(err, isMatch){
         if(err){
           console.log(err);
